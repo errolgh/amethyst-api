@@ -1,3 +1,8 @@
+require 'resque/server'
+
 Rails.application.routes.draw do
-  get 'report', to: 'reports#show'
+  post 'report', to: 'reports#create'
+  get 'report/:id', to: 'reports#show'
+
+  mount Resque::Server, at: '/resque'
 end
